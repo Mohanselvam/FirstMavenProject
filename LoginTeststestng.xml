@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="NegativeLoginTest">
+
+	<test name="positiveTests">
+		<parameter name="browser" value="Edge" />
+		<groups>
+			<run>
+				<include name="positiveTests" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.herokuapp.internetapp.LoginScreenTests" />
+		</classes>
+	</test>
+
+	<test thread-count="5" name="IncorrectUserNameTests">
+		<parameter name="browser" value="Edge" />
+		<parameter name="username" value="invalid username" />
+		<parameter name="password" value="SuperSecretPassword!" />
+		<parameter name="expectedErrorMessage" value="Your username is invalid!" />
+		<classes>
+			<class name="com.herokuapp.internetapp.LoginScreenTests">
+				<methods>
+					<include name="negativeLoginTests" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
+	<test thread-count="5" name="IncorrectPasswordTest">
+		<parameter name="browser" value="Edge" />
+		<parameter name="username" value="tomsmith" />
+		<parameter name="password" value="SuperSecretPasswordd!" />
+		<parameter name="expectedErrorMessage" value="Your password is invalid!" />
+		<classes>
+			<class name="com.herokuapp.internetapp.LoginScreenTests">
+				<methods>
+					<include name="negativeLoginTests" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
+</suite> <!-- Suite -->
